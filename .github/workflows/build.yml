@@ -17,8 +17,13 @@ jobs:
           distribution: 'temurin'
           java-version: '21'
 
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.8'
+
       - name: Compile Mod (.jar)
-        run: ./gradlew build --no-daemon
+        run: gradle build --no-daemon
 
       - name: Upload Compiled .jar
         uses: actions/upload-artifact@v4
@@ -26,5 +31,5 @@ jobs:
           name: AltView-Pojav-1.21.11-Jar
           path: |
             build/libs/*.jar
-            !build/libs/*-sources.jar
-            
+            !build/libs/*-source
+            s.jar
